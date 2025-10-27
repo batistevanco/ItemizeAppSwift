@@ -31,6 +31,7 @@ struct SettingsView: View {
                             Text(t.title).tag(t)
                         }
                     }
+                    .pickerStyle(.segmented)
                 }
                 Section("Categorieën") {
                     ForEach(categories) { cat in

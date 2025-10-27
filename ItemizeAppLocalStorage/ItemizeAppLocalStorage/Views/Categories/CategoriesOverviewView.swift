@@ -5,7 +5,6 @@
 //  Created by Batiste Vancoillie on 27/10/2025.
 //
 
-
 // File: Views/Categories/CategoriesOverviewView.swift
 import SwiftUI
 import SwiftData
@@ -35,7 +34,7 @@ struct CategoriesOverviewView: View {
                     Section(cat?.name ?? "Zonder categorie") {
                         ForEach(items) { item in
                             NavigationLink {
-                                ItemFormView(item: item)
+                                ItemDetailView(item: item)
                             } label: {
                                 ItemRow(item: item)
                             }

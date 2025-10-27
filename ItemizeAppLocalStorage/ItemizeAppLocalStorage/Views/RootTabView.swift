@@ -16,8 +16,8 @@ struct RootTabView: View {
         TabView {
             ItemListView()
                 .tabItem { Label("Items", systemImage: "list.bullet") }
-            //CategoriesOverviewView()
-                //.tabItem { Label("Categorieën", systemImage: "square.grid.2x2") }
+            CategoriesOverviewView()
+                .tabItem { Label("Categorieën", systemImage: "square.grid.2x2") }
             SettingsView()
                 .tabItem { Label("Instellingen", systemImage: "gear") }
         }.preferredColorScheme(appTheme == .auto ? nil
