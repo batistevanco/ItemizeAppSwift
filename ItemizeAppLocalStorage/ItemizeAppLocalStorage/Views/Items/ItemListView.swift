@@ -106,12 +106,12 @@ struct ItemListView: View {
                 HStack(spacing: 12) {
                     SummaryCard(
                         valueText: String(totalItems),
-                        labelText: "Items in inventory",
+                        labelText: NSLocalizedString("items_in_inventory", comment: "Label for total items in inventory"),
                         systemImage: "shippingbox"
                     )
                     SummaryCard(
                         valueText: String(categoriesCount),
-                        labelText: "Categorieën",
+                        labelText: NSLocalizedString("categories_label", comment: "Label for categories count"),
                         systemImage: "square.grid.2x2"
                     )
                 }
@@ -151,6 +151,8 @@ struct ItemListView: View {
                             .focused($focused)
                         Button {
                             withAnimation(.spring(response: 0.25, dampingFraction: 0.9)) {
+                                text = ""
+                                focused = false
                                 isPresented = false
                             }
                         } label: {

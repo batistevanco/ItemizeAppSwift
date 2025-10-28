@@ -13,6 +13,12 @@ struct CategoriesOverviewView: View {
     @Query(sort: \Category.name) private var categories: [Category]
     @Query(sort: \Item.name) private var allItems: [Item]
     
+    // Fallback-friendly localization helper
+    private func L(_ key: String, _ fallback: String) -> String {
+        let value = NSLocalizedString(key, comment: "")
+        return value == key ? fallback : value
+    }
+    
     var grouped: [(Category?, [Item])] {
         let dict = Dictionary(grouping: allItems) { $0.category?.id ?? "none" }
         let order = categories.map { $0.id } + ["none"]
@@ -31,7 +37,7 @@ struct CategoriesOverviewView: View {
         NavigationStack {
             List {
                 ForEach(grouped, id: \.0?.id) { (cat, items) in
-                    Section(cat?.name ?? "Zonder categorie") {
+                    Section(cat?.name ?? L("uncategorized_title", "Zonder categorie")) {
                         ForEach(items) { item in
                             NavigationLink {
                                 ItemDetailView(item: item)

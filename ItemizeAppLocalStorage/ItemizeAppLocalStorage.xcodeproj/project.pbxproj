@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		59841A9B2EB0D8A5001D2F27 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 59841A9A2EB0D8A5001D2F27 /* Localizable.xcstrings */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		59841A9A2EB0D8A5001D2F27 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		599856692EAF9D0100BDD4E9 /* ItemizeAppLocalStorage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItemizeAppLocalStorage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5998569D2EAF9F1200BDD4E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -33,6 +38,7 @@
 		599856602EAF9D0100BDD4E9 = {
 			isa = PBXGroup;
 			children = (
+				59841A9A2EB0D8A5001D2F27 /* Localizable.xcstrings */,
 				5998569D2EAF9F1200BDD4E9 /* Info.plist */,
 				5998566B2EAF9D0100BDD4E9 /* ItemizeAppLocalStorage */,
 				5998566A2EAF9D0100BDD4E9 /* Products */,
@@ -88,11 +94,12 @@
 				};
 			};
 			buildConfigurationList = 599856642EAF9D0100BDD4E9 /* Build configuration list for PBXProject "ItemizeAppLocalStorage" */;
-			developmentRegion = en;
+			developmentRegion = nl;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				nl,
 			);
 			mainGroup = 599856602EAF9D0100BDD4E9;
 			minimizedProjectReferenceProxies = 1;
@@ -111,6 +118,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59841A9B2EB0D8A5001D2F27 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +193,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -240,6 +249,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
