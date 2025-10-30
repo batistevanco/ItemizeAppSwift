@@ -1,48 +1,53 @@
-//
-//  Item.swift
-//  ItemizeAppLocalStorage
-//
-//  Created by Batiste Vancoillie on 27/10/2025.
-//
-
-
 // File: Models/Item.swift
-import SwiftData
 import Foundation
+import SwiftData
 
 @Model
 final class Item: Identifiable {
     @Attribute(.unique) var id: String
     var name: String
     var quantity: Int
-    @Relationship(deleteRule: .nullify, inverse: \Category.items) var category: Category?
-    @Relationship(deleteRule: .cascade) var fields: [DynamicField]
-    @Relationship(deleteRule: .cascade) var image: ImageAsset?
-    var createdAt: Date
-    
-    init(name: String, quantity: Int = 1, category: Category? = nil, fields: [DynamicField] = [], image: ImageAsset? = nil) {
+    @Relationship var category: Category?
+    @Relationship var fields: [DynamicField] = []
+    @Relationship var images: [ImageAsset] = []
+
+    /// Eerste/primary image obv `order` (val terug op insert-volgorde)
+    var primaryImage: ImageAsset? {
+        images.sorted { ($0.order ?? 0) < ($1.order ?? 0) }.first
+    }
+
+    // NIEUW
+    @Relationship var tags: [Tag] = []
+    @Attribute var isFavorite: Bool = false
+    @Attribute var accessCount: Int = 0
+    @Attribute var lastAccessedAt: Date?
+    @Attribute var createdAt: Date = Date()
+
+    @Attribute var isDemo: Bool = false
+
+    init(name: String,
+         quantity: Int = 1,
+         category: Category? = nil,
+         fields: [DynamicField] = [],
+         images: [ImageAsset] = [],
+         tags: [Tag] = [],
+         isFavorite: Bool = false,
+         isDemo: Bool = false)
+    {
         self.id = UUID().uuidString
         self.name = name
         self.quantity = quantity
         self.category = category
         self.fields = fields
-        self.image = image
-        self.createdAt = .now
+        self.images = images
+        self.tags = tags
+        self.isFavorite = isFavorite
+        self.isDemo = isDemo
+        self.createdAt = Date()
     }
-    
-        @Attribute var isDemo: Bool = false
 
-        init(name: String, quantity: Int = 1, category: Category? = nil, fields: [DynamicField] = [], image: ImageAsset? = nil, isDemo: Bool = false) {
-            self.id = UUID().uuidString
-            self.name = name
-            self.quantity = quantity
-            self.category = category
-            self.fields = fields
-            self.image = image
-            self.isDemo = isDemo
-            self.createdAt = Date()
-        }
-    
+    func bumpUsage() {
+        accessCount += 1
+        lastAccessedAt = Date()
+    }
 }
-
-

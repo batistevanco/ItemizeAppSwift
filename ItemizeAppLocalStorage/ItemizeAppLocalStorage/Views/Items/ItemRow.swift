@@ -14,7 +14,7 @@ struct ItemRow: View {
     var body: some View {
         HStack(alignment: .center, spacing: 14) {
             // Thumbnail (fallback icon als er geen foto is)
-            if let filename = item.image?.filename, let ui = ImageStore.loadImage(named: filename) {
+            if let filename = item.primaryImage?.filename, let ui = ImageStore.loadImage(named: filename) {
                 Image(uiImage: ui)
                     .resizable()
                     .scaledToFill()
@@ -80,6 +80,14 @@ struct ItemRow: View {
                     Capsule().stroke(Color.tealGreen.opacity(0.18), lineWidth: 1)
                 )
                 .foregroundStyle(Color.deepGreen)
+
+            if item.isFavorite {
+                Image(systemName: "star.fill")
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(.yellow)
+                    .padding(.leading, 4)
+                    .accessibilityLabel(Text("Favoriet"))
+            }
         }
         .padding(.vertical, 8)
     }

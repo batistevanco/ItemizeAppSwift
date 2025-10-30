@@ -16,6 +16,9 @@ struct ItemFormView: View {
     @Environment(\.modelContext) private var ctx
     
     @Query(sort: \Category.name) private var categories: [Category]
+    @Query(sort: \Tag.name) private var allTags: [Tag]
+    @State private var selectedTags: [Tag] = []
+    @State private var tagInput: String = ""
     
     // Edit of nieuw
     @State private var item: Item
@@ -23,7 +26,8 @@ struct ItemFormView: View {
     
     // UI state
     @State private var showCamera = false
-    @State private var selectedPhoto: PhotosPickerItem?
+    @State private var selectedPhotos: [PhotosPickerItem] = []
+    @State private var workingImages: [ImageAsset] = []
     @State private var newFieldKey = ""
     @State private var newFieldValue = ""
     @State private var newCategoryName = ""
@@ -33,9 +37,14 @@ struct ItemFormView: View {
     init(item: Item? = nil) {
         if let existing = item {
             _item = State(initialValue: existing)
+            _selectedTags = State(initialValue: existing.tags)
+            _workingImages = State(initialValue: existing.images)
             isNew = false
         } else {
-            _item = State(initialValue: Item(name: "", quantity: 1))
+            let fresh = Item(name: "", quantity: 1)
+            _item = State(initialValue: fresh)
+            _selectedTags = State(initialValue: [])
+            _workingImages = State(initialValue: [])
             isNew = true
         }
     }
@@ -52,19 +61,11 @@ struct ItemFormView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
-                Picker("Categorie", selection: Binding(
-                    get: { item.category?.id ?? "none" },
-                    set: { newId in
-                        if newId == "none" {
-                            item.category = nil
-                        } else if let cat = categories.first(where: { $0.id == newId }) {
-                            item.category = cat
-                        }
-                    })) {
-                        Text("Geen").tag("none")
-                        ForEach(categories) { cat in
-                            Text(cat.name).tag(cat.id)
-                        }
+                Picker("Categorie", selection: $item.category) {
+                    Text("—").tag(Category?.none)
+                    ForEach(categories) { cat in
+                        Text(cat.breadcrumb).tag(Category?.some(cat))
+                    }
                 }
                 .pickerStyle(.navigationLink)
                 .buttonStyle(.borderless)
@@ -82,6 +83,50 @@ struct ItemFormView: View {
                         newCategoryName = ""
                     } label: {
                         Label("Voeg toe", systemImage: "plus.circle.fill")
+                    }
+                    .buttonStyle(.borderless)
+                }
+            }
+            
+            Section("Tags") {
+                // Chips
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(selectedTags) { tag in
+                            HStack(spacing: 6) {
+                                Text(tag.name)
+                                Button(role: .destructive) {
+                                    selectedTags.removeAll { $0.id == tag.id }
+                                } label: { Image(systemName: "xmark.circle.fill") }
+                            }
+                            .padding(.horizontal, 10).padding(.vertical, 6)
+                            .background(.thinMaterial).clipShape(Capsule())
+                        }
+                    }.padding(.vertical, 4)
+                }
+
+                HStack {
+                    TextField("Voeg tag(s) toe (bv. USB-C, Thunderbolt)", text: $tagInput)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled(true)
+                    Button("Toevoegen") {
+                        let names = tagInput
+                            .split(separator: ",")
+                            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                            .filter { !$0.isEmpty }
+
+                        for n in names {
+                            if let existing = allTags.first(where: { $0.name.caseInsensitiveCompare(n) == .orderedSame }) {
+                                if !selectedTags.contains(where: { $0.id == existing.id }) {
+                                    selectedTags.append(existing)
+                                }
+                            } else {
+                                let t = Tag(name: n)
+                                ctx.insert(t)
+                                selectedTags.append(t)
+                            }
+                        }
+                        tagInput = ""
                     }
                     .buttonStyle(.borderless)
                 }
@@ -113,32 +158,47 @@ struct ItemFormView: View {
                 }
             }
             
-            Section("Afbeelding") {
-                if let filename = item.image?.filename, let ui = ImageStore.loadImage(named: filename) {
-                    Image(uiImage: ui)
-                        .resizable().scaledToFit()
-                        .frame(maxHeight: 220)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(.quaternary))
-                    Button(role: .destructive) {
-                        ImageStore.delete(named: filename)
-                        item.image = nil
-                    } label: { Label("Verwijder afbeelding", systemImage: "trash") }
+            Section("Foto’s") {
+                // Gallery grid
+                if workingImages.isEmpty {
+                    Text("Geen foto’s toegevoegd").foregroundStyle(.secondary)
                 } else {
-                    Text("Geen afbeelding toegevoegd").foregroundStyle(.secondary)
-                }
-                
-                HStack {
-                    PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                        Label("Kies foto", systemImage: "photo")
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 90), spacing: 10)], spacing: 10) {
+                        ForEach(workingImages, id: \.id) { asset in
+                            if let ui = ImageStore.loadImage(named: asset.filename) {
+                                ZStack(alignment: .topTrailing) {
+                                    Image(uiImage: ui)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 90, height: 90)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    Button(role: .destructive) {
+                                        if let idx = workingImages.firstIndex(where: { $0.id == asset.id }) {
+                                            // Remove only this asset from state first
+                                            let filename = workingImages[idx].filename
+                                            withAnimation { _ = workingImages.remove(at: idx) }
+                                            // Delete the file only if no other asset still points to the same file
+                                            let stillReferenced = workingImages.contains { $0.filename == filename }
+                                            if !stillReferenced {
+                                                ImageStore.delete(named: filename)
+                                            }
+                                        }
+                                    } label: { Image(systemName: "xmark.circle.fill") }
+                                }
+                            }
+                        }
                     }
-                    .buttonStyle(.borderless)
+                    .padding(.vertical, 4)
+                }
+
+                // Pickers row
+                HStack {
+                    PhotosPicker("Kies foto’s", selection: $selectedPhotos, maxSelectionCount: 0, matching: .images)
+                        .buttonStyle(.borderless)
                     Spacer()
                     Button {
                         showCamera = true
-                    } label: {
-                        Label("Neem foto", systemImage: "camera")
-                    }
+                    } label: { Label("Neem foto", systemImage: "camera") }
                     .buttonStyle(.borderless)
                 }
             }
@@ -155,20 +215,27 @@ struct ItemFormView: View {
                     .disabled(item.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
         }
-        .onChange(of: selectedPhoto) { _, newVal in
-            guard let newVal else { return }
+        .onChange(of: selectedPhotos) { _, newItems in
+            guard !newItems.isEmpty else { return }
             Task {
-                if let data = try? await newVal.loadTransferable(type: Data.self),
-                   let ui = UIImage(data: data) {
-                    handlePickedImage(ui)
+                var nextOrder = (workingImages.compactMap { $0.order }.max() ?? -1) + 1
+                for item in newItems {
+                    if let data = try? await item.loadTransferable(type: Data.self),
+                       let ui = UIImage(data: data),
+                       let saved = try? ImageStore.saveJPEG(ui) {
+                        let asset = ImageAsset(filename: saved, order: nextOrder)
+                        workingImages.append(asset)
+                        nextOrder += 1
+                    }
                 }
+                selectedPhotos.removeAll()
             }
         }
         .fullScreenCover(isPresented: $showCamera) {
             CameraPicker { ui in
-                if let fn = item.image?.filename { ImageStore.delete(named: fn) }
                 if let saved = try? ImageStore.saveJPEG(ui) {
-                    item.image = ImageAsset(filename: saved)
+                    let nextOrder = (workingImages.compactMap { $0.order }.max() ?? -1) + 1
+                    workingImages.append(ImageAsset(filename: saved, order: nextOrder))
                 }
             }
             .ignoresSafeArea()
@@ -177,13 +244,15 @@ struct ItemFormView: View {
     
     private func handlePickedImage(_ image: UIImage?) {
         guard let image else { return }
-        if let fn = item.image?.filename { ImageStore.delete(named: fn) }
         if let saved = try? ImageStore.saveJPEG(image) {
-            item.image = ImageAsset(filename: saved)
+            let nextOrder = (workingImages.compactMap { $0.order }.max() ?? -1) + 1
+            workingImages.append(ImageAsset(filename: saved, order: nextOrder))
         }
     }
     
     private func saveAndClose() {
+        item.tags = selectedTags
+        item.images = workingImages
         if isNew { ctx.insert(item) }
         try? ctx.save()
         dismiss()

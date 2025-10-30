@@ -39,11 +39,11 @@ struct ItemizeAppLocalStorageApp: App {
         }
 
         // MARK: - Categorieën
-        let catCables = Category(name: "Kabels", isDemo: true)
+        let catCables = Category(name: "Cables", isDemo: true)
         let catSnacks = Category(name: "Snacks", isDemo: true)
-        let catOffice = Category(name: "Kantoor", isDemo: true)
-        let catTools = Category(name: "Gereedschap", isDemo: true)
-        let catElectronics = Category(name: "Elektronica", isDemo: true)
+        let catOffice = Category(name: "Office", isDemo: true)
+        let catTools = Category(name: "Tools", isDemo: true)
+        let catElectronics = Category(name: "Electronics", isDemo: true)
 
         ctx.insert(catCables)
         ctx.insert(catSnacks)
@@ -54,103 +54,103 @@ struct ItemizeAppLocalStorageApp: App {
         // MARK: - Items
         let demoItems: [Item] = [
             Item(
-                name: "Ethernetkabel 3m",
+                name: "Ethernet Cable 3 m",
                 quantity: 2,
                 category: catCables,
                 fields: [
-                    DynamicField(key: "Kleur", value: "Wit"),
-                    DynamicField(key: "Lengte", value: "3 m"),
+                    DynamicField(key: "Color", value: "White"),
+                    DynamicField(key: "Length", value: "3 m"),
                     DynamicField(key: "Type", value: "Cat6")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "HDMI-kabel 2m",
+                name: "HDMI Cable 2 m",
                 quantity: 1,
                 category: catCables,
                 fields: [
-                    DynamicField(key: "Versie", value: "2.1"),
-                    DynamicField(key: "Lengte", value: "2 m")
+                    DynamicField(key: "Version", value: "2.1"),
+                    DynamicField(key: "Length", value: "2 m")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "Verlengkabel 5m",
+                name: "Extension Cable 5 m",
                 quantity: 3,
                 category: catCables,
                 fields: [
-                    DynamicField(key: "Kleur", value: "Zwart"),
-                    DynamicField(key: "Aansluitingen", value: "3x stopcontact")
+                    DynamicField(key: "Color", value: "Black"),
+                    DynamicField(key: "Outlets", value: "3 sockets")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "Chips Paprika",
+                name: "Paprika Chips",
                 quantity: 2,
                 category: catSnacks,
                 fields: [
-                    DynamicField(key: "Merk", value: "Lay’s"),
-                    DynamicField(key: "Inhoud", value: "200 g")
+                    DynamicField(key: "Brand", value: "Lay’s"),
+                    DynamicField(key: "Contents", value: "200 g")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "Chocoladereep",
+                name: "Chocolate Bar",
                 quantity: 4,
                 category: catSnacks,
                 fields: [
-                    DynamicField(key: "Merk", value: "Côte d’Or"),
-                    DynamicField(key: "Type", value: "Melk")
+                    DynamicField(key: "Brand", value: "Côte d’Or"),
+                    DynamicField(key: "Type", value: "Milk")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "Notitieboek A5",
+                name: "A5 Notebook",
                 quantity: 5,
                 category: catOffice,
                 fields: [
-                    DynamicField(key: "Pagina’s", value: "80"),
-                    DynamicField(key: "Kleur", value: "Blauw")
+                    DynamicField(key: "Pages", value: "80"),
+                    DynamicField(key: "Color", value: "Blue")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "Balpen blauw",
+                name: "Blue Ballpoint Pen",
                 quantity: 10,
                 category: catOffice,
                 fields: [
-                    DynamicField(key: "Merk", value: "Bic"),
+                    DynamicField(key: "Brand", value: "Bic"),
                     DynamicField(key: "Type", value: "Crystal Medium")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "Schroevendraaierset",
+                name: "Screwdriver Set",
                 quantity: 1,
                 category: catTools,
                 fields: [
-                    DynamicField(key: "Aantal", value: "6-delig"),
-                    DynamicField(key: "Type", value: "Kruiskop & Plat")
+                    DynamicField(key: "Pieces", value: "6-piece"),
+                    DynamicField(key: "Type", value: "Phillips & Flat")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "Boormachine",
+                name: "Drill",
                 quantity: 1,
                 category: catTools,
                 fields: [
-                    DynamicField(key: "Merk", value: "Bosch"),
-                    DynamicField(key: "Vermogen", value: "750 W")
+                    DynamicField(key: "Brand", value: "Bosch"),
+                    DynamicField(key: "Power", value: "750 W")
                 ],
                 isDemo: true
             ),
             Item(
-                name: "Powerbank 10.000 mAh",
+                name: "Power Bank 10,000 mAh",
                 quantity: 2,
                 category: catElectronics,
                 fields: [
-                    DynamicField(key: "Merk", value: "Anker"),
-                    DynamicField(key: "Kleur", value: "Zwart")
+                    DynamicField(key: "Brand", value: "Anker"),
+                    DynamicField(key: "Color", value: "Black")
                 ],
                 isDemo: true
             ),
@@ -159,8 +159,8 @@ struct ItemizeAppLocalStorageApp: App {
                 quantity: 1,
                 category: catElectronics,
                 fields: [
-                    DynamicField(key: "Merk", value: "JBL"),
-                    DynamicField(key: "Waterdicht", value: "Ja")
+                    DynamicField(key: "Brand", value: "JBL"),
+                    DynamicField(key: "Waterproof", value: "Yes")
                 ],
                 isDemo: true
             )

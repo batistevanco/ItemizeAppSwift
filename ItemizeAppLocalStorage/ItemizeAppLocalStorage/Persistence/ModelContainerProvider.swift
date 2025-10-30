@@ -1,23 +1,26 @@
-//
-//  ModelContainerProvider.swift
-//  ItemizeAppLocalStorage
-//
-//  Created by Batiste Vancoillie on 27/10/2025.
-//
-
 // File: Persistence/ModelContainerProvider.swift
 import SwiftData
 
+@MainActor
 final class ModelContainerProvider {
     static let shared = ModelContainerProvider()
     let container: ModelContainer
+
     init() {
+        let schema = Schema([
+            Item.self,
+            Category.self,
+            DynamicField.self,
+            ImageAsset.self,
+            Tag.self
+        ])
+
         do {
-            container = try ModelContainer(for:
-            Item.self, Category.self, DynamicField.self, ImageAsset.self
-            )
+            // Gewoon lokaal opslaan — geen iCloud of CloudKit
+            let config = ModelConfiguration(isStoredInMemoryOnly: false)
+            container = try ModelContainer(for: schema, configurations: [config])
         } catch {
-            fatalError("Kon ModelContainer niet maken: \(error)")
+            fatalError("Failed to create ModelContainer: \(error)")
         }
     }
 }

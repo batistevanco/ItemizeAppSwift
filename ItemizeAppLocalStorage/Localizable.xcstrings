@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "nl",
   "strings" : {
+    "—" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "—"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "en" : {
@@ -27,16 +37,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Made"
-          }
-        }
-      }
-    },
-    "Afbeelding" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Picture"
           }
         }
       }
@@ -208,22 +208,100 @@
         }
       }
     },
-    "Geen" : {
+    "Favoriet" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "None"
+            "value" : "Favorite"
           }
         }
       }
     },
-    "Geen afbeelding toegevoegd" : {
+    "Foto’s" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo’s"
+          }
+        }
+      }
+    },
+    "Geen foto’s toegevoegd" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No picture added"
+          }
+        }
+      }
+    },
+    "group_category" : {
+      "comment" : "Group by category",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group by category"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Groepeer door categorie"
+          }
+        }
+      }
+    },
+    "group_date" : {
+      "comment" : "Group by date added",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group by data"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Groepeer door"
+          }
+        }
+      }
+    },
+    "group_none" : {
+      "comment" : "No grouping",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No grouping"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen groepering"
+          }
+        }
+      }
+    },
+    "group_tag" : {
+      "comment" : "Group by tag",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group by tag"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Groepeer door tag"
           }
         }
       }
@@ -296,7 +374,7 @@
         }
       }
     },
-    "Kies foto" : {
+    "Kies foto’s" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -312,6 +390,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Producer"
+          }
+        }
+      }
+    },
+    "menu_group" : {
+      "comment" : "Group",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group by"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Groepeer door"
+          }
+        }
+      }
+    },
+    "menu_reset_defaults" : {
+      "comment" : "Reset to defaults",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset to default"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herstel standaard"
+          }
+        }
+      }
+    },
+    "menu_sort" : {
+      "comment" : "Sort",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteer door"
+          }
+        }
+      }
+    },
+    "menu_sort_group" : {
+      "comment" : "Sort & Group",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort & group"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteer & groepeer"
           }
         }
       }
@@ -406,6 +552,142 @@
         }
       }
     },
+    "sort_favorite_first" : {
+      "comment" : "Favorites first",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites first"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorieten eerst"
+          }
+        }
+      }
+    },
+    "sort_favorite_last" : {
+      "comment" : "Favorites last",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites last"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorieten laatst"
+          }
+        }
+      }
+    },
+    "sort_name_az" : {
+      "comment" : "Sort by name ascending",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort name A-Z"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteer naam A-Z"
+          }
+        }
+      }
+    },
+    "sort_name_za" : {
+      "comment" : "Sort by name descending",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort name Z-A"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteer naam Z-A"
+          }
+        }
+      }
+    },
+    "sort_newest" : {
+      "comment" : "Newest first",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by newest"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieuwste eerst"
+          }
+        }
+      }
+    },
+    "sort_oldest" : {
+      "comment" : "Oldest first",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by oldest"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oudste eerst"
+          }
+        }
+      }
+    },
+    "sort_quantity_high" : {
+      "comment" : "Quantity high to low",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by quantity high"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meeste aantal eerst"
+          }
+        }
+      }
+    },
+    "sort_quantity_low" : {
+      "comment" : "Quantity low to high",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by quantity low"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laagste aantal eerst"
+          }
+        }
+      }
+    },
     "Support" : {
       "localizations" : {
         "en" : {
@@ -416,12 +698,32 @@
         }
       }
     },
+    "Tags" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tags"
+          }
+        }
+      }
+    },
     "Thema" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Theme"
+          }
+        }
+      }
+    },
+    "Toevoegen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
           }
         }
       }
@@ -457,16 +759,6 @@
         }
       }
     },
-    "Verwijder afbeelding" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remove picture"
-          }
-        }
-      }
-    },
     "Verwijder categorie" : {
       "localizations" : {
         "en" : {
@@ -483,6 +775,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete mockup data"
+          }
+        }
+      }
+    },
+    "Voeg tag(s) toe (bv. USB-C, Thunderbolt)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add tag(s) (for example. USB-C, Thunderbolt)"
           }
         }
       }
@@ -543,6 +845,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search name or field…"
+          }
+        }
+      }
+    },
+    "Zonder categorie" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No category"
+          }
+        }
+      }
+    },
+    "Zonder tag" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tag"
           }
         }
       }
