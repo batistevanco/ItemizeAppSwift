@@ -90,6 +90,14 @@ struct SettingsView: View {
                     LabeledContent("Build") {
                         Text(appBuild)
                     }
+                    Button {
+                        if let url = URL(string: "https://vancoillieithulp.be/privacyPolicyItemize.html") {
+                            openURL(url)
+                        }
+                    } label: {
+                        Label("Privacy Policy", systemImage: "lock.shield")
+                    }
+                    .buttonStyle(.borderless)
                 }
             }
             .scrollDismissesKeyboard(.immediately)
