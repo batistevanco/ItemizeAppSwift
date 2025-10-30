@@ -69,7 +69,7 @@ struct SettingsView: View {
                 }
                 Section("Support") {
                     Button {
-                        if let url = URL(string: "mailto:support@vancoilliestudio.be?subject=Itemize%20Support") {
+                        if let url = URL(string: "mailto:support@vancoilliestudio.be?subject=StockBuddy%20Support") {
                             openURL(url)
                         }
                     } label: {
@@ -91,7 +91,7 @@ struct SettingsView: View {
                         Text(appBuild)
                     }
                     Button {
-                        if let url = URL(string: "https://vancoillieithulp.be/privacyPolicyItemize.html") {
+                        if let url = URL(string: "https://vancoillieithulp.be/privacyPolicyStockBuddy.html") {
                             openURL(url)
                         }
                     } label: {

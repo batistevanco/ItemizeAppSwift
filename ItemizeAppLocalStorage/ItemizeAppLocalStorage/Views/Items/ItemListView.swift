@@ -419,7 +419,7 @@ struct ItemListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Itemize")
+                    Text("StockBuddy")
                         .font(.largeTitle.bold())
                         .foregroundColor(Color.tealGreen)
                 }

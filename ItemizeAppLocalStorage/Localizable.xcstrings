@@ -326,16 +326,6 @@
         }
       }
     },
-    "Itemize" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Itemize"
-          }
-        }
-      }
-    },
     "Items" : {
       "localizations" : {
         "en" : {
@@ -553,7 +543,14 @@
       }
     },
     "Privacy Policy" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
     },
     "sort_favorite_first" : {
       "comment" : "Favorites first",
@@ -687,6 +684,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Laagste aantal eerst"
+          }
+        }
+      }
+    },
+    "StockBuddy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "StockBuddy"
           }
         }
       }
